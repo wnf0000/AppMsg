@@ -21,6 +21,11 @@
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>3723e321-0012-480f-80f9-e2a53c063f2e</CodesignProvision>
+    <CodesignKey>iPhone Developer: wang naifeng (HBZTDSFNYL)</CodesignKey>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>

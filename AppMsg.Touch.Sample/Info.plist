@@ -15,12 +15,14 @@
 	<key>MinimumOSVersion</key>
 	<string>5.1</string>
 	<key>CFBundleDisplayName</key>
-	<string>AppMsg.Touch.Sample</string>
-	<key>CFBundleIdentifier</key>
-	<string>AppMsg.Touch.Sample</string>
+	<string>AppMsg</string>
 	<key>CFBundleVersion</key>
-	<string></string>
+	<string>1.0</string>
 	<key>NSMainNibFile</key>
 	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>org.haoya.appmsg</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
 </dict>
 </plist>
