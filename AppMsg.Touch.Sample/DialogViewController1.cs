@@ -19,26 +19,16 @@ namespace AppMsg.Touch.Sample
                     //    new UIAlertView ("Hola", "Thanks for tapping!", null, "Continue").Show (); 
                     //}),
 					//new EntryElement ("Name", "Enter your name", String.Empty),
-                    new StringElement("¶¥²¿ÏÔÊ¾", () =>
-                    {
-                        AppMsg.MakeText(this, "¶¥²¿ÏÔÊ¾", AppMsg.StyleInfo).SetDisplayPosition(DisplayPosition.Top).Show();
-                    }),
-                     new StringElement("ÖÐ¼äÏÔÊ¾", () =>
-                    {
-                        AppMsg.MakeText(this, "ÖÐ¼äÏÔÊ¾", AppMsg.StyleInfo).SetDisplayPosition(DisplayPosition.Center).Show();
-                    }),
-                    new StringElement("µ×²¿ÏÔÊ¾", () =>
-                    {
-                        AppMsg.MakeText(this, "µ×²¿ÏÔÊ¾", AppMsg.StyleInfo).SetDisplayPosition(DisplayPosition.Bottom).Show();
-                    }),
-                    new StringElement("ÏÔÊ¾³É¹¦", () =>
-                    {
-                        AppMsg.MakeText(this, "ÏÔÊ¾³É¹¦", AppMsg.StyleSuccess).Show();
-                    }),
-                    new StringElement("ÏÔÊ¾Ê§°Ü", () =>
-                    {
-                        AppMsg.MakeText(this, "ÏÔÊ¾Ê§°Ü", AppMsg.StyleError).Show();
-                    })
+                    new StringElement("é¡¶éƒ¨æ˜¾ç¤º", () =>
+                    AppMsg.MakeText (this, "é¡¶éƒ¨æ˜¾ç¤º", AppMsg.StyleInfo).SetDisplayPosition (DisplayPosition.Top).Show ()),
+                     new StringElement("ä¸­é—´æ˜¾ç¤º", () =>
+                    AppMsg.MakeText (this, "ä¸­é—´æ˜¾ç¤º", AppMsg.StyleInfo).SetDisplayPosition (DisplayPosition.Center).Show ()),
+                    new StringElement("åº•éƒ¨æ˜¾ç¤º", () =>
+                    AppMsg.MakeText (this, "åº•éƒ¨æ˜¾ç¤º", AppMsg.StyleInfo).SetDisplayPosition (DisplayPosition.Bottom).Show ()),
+                    new StringElement("æ˜¾ç¤ºæˆåŠŸ", () =>
+                    AppMsg.MakeText (this, "æ˜¾ç¤ºæˆåŠŸ", AppMsg.StyleSuccess).Show ()),
+                    new StringElement("æ˜¾ç¤ºå¤±è´¥", () =>
+                    AppMsg.MakeText (this, "æ˜¾ç¤ºå¤±è´¥", AppMsg.StyleError).Show ())
 				},
 			};
             
