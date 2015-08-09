@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <color name="monodroid_appmsg_alert">#CC0000</color>
+  <color name="monodroid_appmsg_confirm">#FF8800</color>
+  <color name="monodroid_appmsg_info">#669900</color>
+  <color name="monodroid_appmsg_success">#6B9900</color>
+  <color name="monodroid_appmsg_error">#D20A01</color>
+  <color name="monodroid_appmsg_fail">#F55D5C</color>
+</resources>
