@@ -3,10 +3,11 @@ using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using MonoTouch.UIKit;
+using MonoTouch.Foundation;
 
 namespace AppMsg.Touch
 {
-    internal class MsgManager
+    internal class MsgManager:NSObject
     {
         private static MsgManager mInstance;
         private readonly ManualResetEvent allDone = new ManualResetEvent(false);
@@ -36,13 +37,14 @@ namespace AppMsg.Touch
 
         private void Start()
         {
+			IsRunning = true;
             Task.Run(() =>
             {
                 while (needGoon)
                 {
-                    allDone.Reset();
+					allDone.WaitOne();
                     DisplayMsg();
-                    allDone.WaitOne();
+					allDone.Reset();
                 }
                 IsRunning = false;
             });
@@ -52,8 +54,10 @@ namespace AppMsg.Touch
         {
             msgQueue.Enqueue(appMsg);
             needGoon = true;
-            if (!IsRunning)
-                Start();
+			if (!IsRunning) {
+				Start ();
+				allDone.Set ();
+			}
         }
 
         public void ClearMsg(AppMsg appMsg)
@@ -84,25 +88,12 @@ namespace AppMsg.Touch
 
             AppMsg appMsg = msgQueue.Dequeue();
 
-            if (appMsg.Controller == null)
-            {
-                allDone.Set();
-                return;
-            }
             AddMsgToView(appMsg);
         }
 
         private void AddMsgToView(AppMsg appMsg)
         {
-            if (appMsg.Controller == null || appMsg.State != MsgState.Added)
-            {
-                if (msgQueue.Count == 0)
-                {
-                    needGoon = false;
-                }
-                allDone.Set();
-            }
-            appMsg.Controller.InvokeOnMainThread(() =>
+			UIApplication.SharedApplication.InvokeOnMainThread(() =>
             {
                 var layout = new UIView
                 {
@@ -130,7 +121,7 @@ namespace AppMsg.Touch
                     Text = appMsg.Msg,
                     Font = UIFont.BoldSystemFontOfSize(14f),
                     TextColor = UIColor.White,
-                    BackgroundColor = appMsg.Style.Background,
+                    //BackgroundColor = appMsg.Style.Background,
                     TextAlignment = UITextAlignment.Center
                 };
                 layout.AddSubview(inner);
@@ -139,10 +130,18 @@ namespace AppMsg.Touch
                 UIApplication.SharedApplication.KeyWindow.AddSubview(layout);
 
                 appMsg.State = MsgState.IsShowing;
-                Task.Delay(appMsg.Duration).ContinueWith(r => appMsg.Controller.InvokeOnMainThread(() =>
+					Task.Delay(appMsg.Duration-500).ContinueWith(r => UIApplication.SharedApplication.InvokeOnMainThread(() =>
                 {
-                    layout.Hidden = true;
-                    layout = null;
+							UIView.AnimateAsync(.5,()=>{
+								inner.Hidden=true;
+								layout.BackgroundColor=layout.BackgroundColor.ColorWithAlpha(0);
+							}).ContinueWith(t=>{
+								
+								InvokeOnMainThread (()=>{layout.Hidden=true;layout.RemoveFromSuperview();});
+							});
+					
+                    //layout.Hidden = true;
+                    
                     appMsg.State = MsgState.Display;
                     if (msgQueue.Count == 0)
                     {
